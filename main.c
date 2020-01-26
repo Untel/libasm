@@ -9,6 +9,7 @@ char *ft_strcpy(char *dest, char *src);
 int	ft_strcmp(char *a, char *b);
 int ft_write(int fd, char *a, int len);
 int ft_read(int fd, char *a, int len);
+char *ft_strdup(char *str);
 
 void
 	test_strlen(char *str)
@@ -62,6 +63,13 @@ void
 	printf("\nft_read(%d, [BUFFER], %d) ==> (%d) '%s'\n", fd, buffsize, ret2, buffer2);
 }
 
+void
+	test_strdup(char *str)
+{
+	char *ret = ft_strdup(str);
+	printf("\n%s (%p) = ft_strdup(%s) from %p\n", ret, ret, str, str);
+}
+
 
 int
 	main(int ac, char **av)
@@ -81,7 +89,7 @@ int
 	test_write(1, "", 1);
 	test_write(1, NULL, 1);
 	test_write(-1, "yo", 2);
-
 	test_read("ft_read.s", 10);
 	test_read("", 10);
+	test_strdup("dupped");
 }
