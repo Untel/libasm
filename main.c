@@ -4,18 +4,33 @@
 #include <unistd.h>
 
 int	ft_strlen(const char *str);
+char *ft_strcpy(char *dest, char *src);
 
 void
 	test_strlen(char *str)
 {
-	printf("TEST OF STRLEN WITH %s\n", str);
-	printf("ft_strlen %d\n", ft_strlen(str));
-	printf("strlen %lu\n", strlen(str));
+	printf("\n%d = ft_strlen(\"%s\")\n", ft_strlen(str), str);
+	printf("%lu = strlen(\"%s\")\n", strlen(str), str);
 }
+
+void
+	test_strcpy(char *str)
+{
+	char dest[20];
+
+	ft_strcpy(dest, str);
+	printf("\n%s = ft_strcpy(dest[20], \"%s\")\n", dest, str);
+}
+
 
 int
 	main(int ac, char **av)
 {
 	(void)ac;
-	test_strlen(*av);
+	(void)**av;
+	test_strlen("Bonjour");
+	test_strlen("");
+	test_strlen("a");
+
+	test_strcpy("Bonjour");
 }

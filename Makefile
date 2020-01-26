@@ -1,4 +1,4 @@
-SRCS			= ft_strlen.s
+SRCS			= ft_strlen.s ft_strcpy.s
 SRCC			= main.c
 NAME			= libasm.a
 
