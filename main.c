@@ -10,6 +10,7 @@ int	ft_strcmp(char *a, char *b);
 int ft_write(int fd, char *a, int len);
 int ft_read(int fd, char *a, int len);
 char *ft_strdup(char *str);
+int ft_atoi_base(char *str, char *base);
 
 void
 	test_strlen(char *str)
@@ -70,6 +71,18 @@ void
 	printf("\n%s (%p) = ft_strdup(%s) from %p\n", ret, ret, str, str);
 }
 
+void
+	test_atoibase(char *str)
+{
+	int ret10;
+	char *b10 = "0123456789";
+	// char *b2 = "01";
+	// char *b16 = "0123456789abcdef";
+
+	ret10 = ft_atoi_base(str, b10);
+	printf("\nTesting '%s'\n", str);
+	printf("\nAtoing base 10 = %d\n", ret10);
+}
 
 int
 	main(int ac, char **av)
@@ -92,4 +105,5 @@ int
 	test_read("ft_read.s", 10);
 	test_read("", 10);
 	test_strdup("dupped");
+	test_atoibase("1234");
 }
