@@ -14,26 +14,28 @@ _ft_atoi_base:			; rdi = STR; rsi = BASE
 	mov rax, 0
 	dec r13
 
-.check_base_white_space:
+.check_base_valid:
 	inc r13
-	cmp byte[r13], ' '
+	mov al, byte[r13]
+	cmp al, ' '
 	je .exit
-	cmp byte[r13], 9
+	cmp al, 9
 	je .exit
-	cmp byte[r13], 10
+	cmp al, 10
 	je .exit
-	cmp byte[r13], 11
+	cmp al, 11
 	je .exit
-	cmp byte[r13], 12
+	cmp al, 12
 	je .exit
-	cmp byte[r13], 13
+	cmp al, 13
 	je .exit
-	cmp byte[r13], '+'
+	cmp al, '+'
 	je .exit
-	cmp byte[r13], '-'
+	cmp al, '-'
 	je .exit
-	cmp byte[r13], 0
-	jne .check_base_white_space
+	mov r12, r13
+	cmp al, 0
+	jne .check_double_in_base
 	dec r15
 
 .ignore_white_space:
@@ -67,7 +69,7 @@ _ft_atoi_base:			; rdi = STR; rsi = BASE
 	cmp al, 0			; If str is at end, exit
 	je .exit
 	cmp bl, 0
-	je .error
+	je .exit
 	cmp al, bl
 	je .atoi_loop
 	inc rdi
@@ -103,5 +105,10 @@ _ft_atoi_base:			; rdi = STR; rsi = BASE
 	je .return_negative
 	ret
 
-.error:
-	jmp .exit
+.check_double_in_base:
+	inc r12
+	cmp byte[r12], 0
+	je .check_base_valid
+	cmp byte[r12], al
+	je .exit
+	jmp .check_double_in_base

@@ -104,5 +104,7 @@ int
 	test_strdup("dupped");
 	test_atoibase("   \t\n++---+1010", "01");
 	test_atoibase("   \t\n++---+123456", "0123456789");
-	test_atoibase("   \t\n++--+ff", "0123456789abcdef");
+	test_atoibase("   \t\n++--+ff", "0123456789abdcef");
+	test_atoibase("   \t\n++--+ff", "0123456789abbdcef");
+	test_atoibase("..", "_.");
 }
