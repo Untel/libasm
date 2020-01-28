@@ -106,5 +106,5 @@ int
 	test_atoibase("   \t\n++---+123456", "0123456789");
 	test_atoibase("   \t\n++--+ff", "0123456789abdcef");
 	test_atoibase("   \t\n++--+ff", "0123456789abbdcef");
-	test_atoibase("..", "_.");
+	test_atoibase("...--.", ".");
 }

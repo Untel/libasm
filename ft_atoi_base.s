@@ -5,7 +5,7 @@ section .text
 _ft_atoi_base:			; rdi = STR; rsi = BASE
 	push rdi	
 	mov rdi, rsi 		; rdi = BASE
-	call _ft_strlen	
+	call _ft_strlen
 	mov rdx, rax 		; rdx = BASE SIZE
 	mov r13, rdi 		; COPY BASE TO CHECK WHITESPACE
 	pop r15		 		; rcx = STR
@@ -40,17 +40,18 @@ _ft_atoi_base:			; rdi = STR; rsi = BASE
 
 .ignore_white_space:
 	inc r15
-	cmp byte[r15], ' '
+	mov al, byte[r15]
+	cmp al, ' '
 	je .ignore_white_space
-	cmp byte[r15], 9
+	cmp al, 9
 	je .ignore_white_space
-	cmp byte[r15], 10
+	cmp al, 10
 	je .ignore_white_space
-	cmp byte[r15], 11
+	cmp al, 11
 	je .ignore_white_space
-	cmp byte[r15], 12
+	cmp al, 12
 	je .ignore_white_space
-	cmp byte[r15], 13
+	cmp al, 13
 	je .ignore_white_space
 	dec r15
 
