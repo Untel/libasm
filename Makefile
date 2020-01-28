@@ -4,7 +4,8 @@ SRCS			=	ft_strlen.s\
 					ft_write.s\
 					ft_read.s\
 					ft_strdup.s\
-					ft_atoi_base.s
+					ft_atoi_base.s\
+					ft_list_push_front.s
 
 SRCC			= main.c
 NAME			= libasm.a

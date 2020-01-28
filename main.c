@@ -12,6 +12,28 @@ int ft_read(int fd, char *a, int len);
 char *ft_strdup(char *str);
 int ft_atoi_base(char *str, char *base);
 
+typedef struct		s_list
+{
+	void			*data;
+	struct s_list	*next;
+}					t_list;
+
+void	*ft_list_push_front(t_list **begin_list, void *data);
+void	ft_lstprint(t_list *lst, char *cmt)
+{
+	int i;
+
+	i = 0;
+	printf("--- nodes ---\n");
+	if (cmt)
+		printf("| %s\n", cmt);
+	while (lst)
+	{
+		printf("| %d | \"%s\"\n", i++, lst->data);
+		lst = lst->next;
+	}
+	printf("---------------\n\n");
+}
 void
 	test_strlen(char *str)
 {
@@ -107,4 +129,18 @@ int
 	test_atoibase("   \t\n++--+ff", "0123456789abdcef");
 	test_atoibase("   \t\n++--+ff", "0123456789abbdcef");
 	test_atoibase("...--.", ".");
+
+	t_list l3 = (t_list) { .data = "el 3", .next = NULL };
+	t_list l2 = (t_list) { .data = "el 2", .next = &l3 };
+	t_list *l1 = malloc(sizeof(t_list *));
+	*l1 = (t_list) { .data = "el 1", .next = &l2 };
+	ft_lstprint(l1, "Initialized");
+	printf("Sended ptr %p\n", l1);
+	char *el = ft_strdup("Salut");
+	void *ret = (void *)ft_list_push_front(&l1, el);
+	ft_lstprint(l1, "Modified");
+	printf("Ret is %p\n", l1);
+	printf("Ret ret is %p\n", ret);
+	printf("Data init ptr is %p and l1->data is %p (%s)\n", el, (char *)l1->data, l1->data);
+	printf("Next is %p\n", l1->next);
 }
