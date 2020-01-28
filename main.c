@@ -18,7 +18,8 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-void	*ft_list_push_front(t_list **begin_list, void *data);
+void	ft_list_push_front(t_list **begin_list, void *data);
+int		ft_list_size(t_list *begin_list);
 void	ft_lstprint(t_list *lst, char *cmt)
 {
 	int i;
@@ -136,11 +137,12 @@ int
 	*l1 = (t_list) { .data = "el 1", .next = &l2 };
 	ft_lstprint(l1, "Initialized");
 	printf("Sended ptr %p\n", l1);
-	char *el = ft_strdup("Salut");
-	void *ret = (void *)ft_list_push_front(&l1, el);
+	char *el = ft_strdup("Salsdasasdalkjacsklcja;lcjs;ljas;ljasc;ljcsa;lj;ljdas;ljdut");
+	ft_list_push_front(&l1, el);
 	ft_lstprint(l1, "Modified");
 	printf("Ret is %p\n", l1);
-	printf("Ret ret is %p\n", ret);
 	printf("Data init ptr is %p and l1->data is %p (%s)\n", el, (char *)l1->data, l1->data);
 	printf("Next is %p\n", l1->next);
+	int size = ft_list_size(l1);
+	printf("SIZE IS %d\n", size);
 }
