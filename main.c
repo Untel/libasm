@@ -72,19 +72,13 @@ void
 }
 
 void
-	test_atoibase(char *str)
+	test_atoibase(char *str, char *base)
 {
-	int ret10;
-	int ret2;
-	char *b10 = "0123456789";
-	char *b2 = "01";
-	// char *b16 = "0123456789abcdef";
+	int ret;
 
-	ret10 = ft_atoi_base(str, b10);
-	ret2 = ft_atoi_base(str, b2);
+	ret = ft_atoi_base(str, base);
 	printf("\nTesting '%s'\n", str);
-	printf("\nAtoing base 10 = %d\n", ret10);
-	printf("\nAtoing base 2 = %d\n", ret2);
+	printf("Atoing base %s = %d\n", base, ret);
 }
 
 int
@@ -108,5 +102,7 @@ int
 	test_read("ft_read.s", 10);
 	test_read("", 10);
 	test_strdup("dupped");
-	test_atoibase("   \t\n++---+1010");
+	test_atoibase("   \t\n++---+1010", "01");
+	test_atoibase("   \t\n++---+123456", "0123456789");
+	test_atoibase("   \t\n++--+ff", "0123456789abcdef");
 }

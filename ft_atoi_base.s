@@ -7,12 +7,33 @@ _ft_atoi_base:			; rdi = STR; rsi = BASE
 	mov rdi, rsi 		; rdi = BASE
 	call _ft_strlen	
 	mov rdx, rax 		; rdx = BASE SIZE
+	mov r13, rdi 		; COPY BASE TO CHECK WHITESPACE
 	pop r15		 		; rcx = STR
 	mov r10, 0
-	mov r11, 0
-	mov r12, 0
-	mov r13, 0
 	mov r14, 0
+	mov rax, 0
+	dec r13
+
+.check_base_white_space:
+	inc r13
+	cmp byte[r13], ' '
+	je .exit
+	cmp byte[r13], 9
+	je .exit
+	cmp byte[r13], 10
+	je .exit
+	cmp byte[r13], 11
+	je .exit
+	cmp byte[r13], 12
+	je .exit
+	cmp byte[r13], 13
+	je .exit
+	cmp byte[r13], '+'
+	je .exit
+	cmp byte[r13], '-'
+	je .exit
+	cmp byte[r13], 0
+	jne .check_base_white_space
 	dec r15
 
 .ignore_white_space:
@@ -53,8 +74,9 @@ _ft_atoi_base:			; rdi = STR; rsi = BASE
 	jmp .find_index_loop
 
 .atoi_loop:
+	sub rdi, rsi
+	mov rbx, rdi
 	mov rdi, rsi 		; rdi = BASE
-	sub rbx, '0'
 	imul r10, rdx		; counter * base_size
 	add r10, rbx		; counter + index
 	inc r15
