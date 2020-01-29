@@ -20,6 +20,7 @@ typedef struct		s_list
 
 void	ft_list_push_front(t_list **begin_list, void *data);
 int		ft_list_size(t_list *begin_list);
+void	ft_list_sort(t_list **begin_list, int (*cmp)());
 void	ft_lstprint(t_list *lst, char *cmt)
 {
 	int i;
@@ -104,6 +105,13 @@ void
 	printf("Atoing base %s = %d\n", base, ret);
 }
 
+int sorter(t_list *a, t_list *b)
+{
+	int ret = ft_strcmp(a->data, b->data);
+	// printf("Calling fn %p (%p)| %p (%p)\nRet is %d\n", a, a->data, b, b->data, ret);
+	return (ret);
+}
+
 int
 	main(int ac, char **av)
 {
@@ -131,18 +139,26 @@ int
 	test_atoibase("   \t\n++--+ff", "0123456789abbdcef");
 	test_atoibase("...--.", ".");
 
-	t_list l3 = (t_list) { .data = "el 3", .next = NULL };
-	t_list l2 = (t_list) { .data = "el 2", .next = &l3 };
+	t_list l3 = (t_list) { .data = "f el 3", .next = NULL };
+	t_list l2 = (t_list) { .data = "z el 2", .next = &l3 };
 	t_list *l1 = malloc(sizeof(t_list *));
+	printf("Init malloc ptr %p\n", &l1);
 	*l1 = (t_list) { .data = "el 1", .next = &l2 };
 	ft_lstprint(l1, "Initialized");
 	printf("Sended ptr %p\n", l1);
 	char *el = ft_strdup("Salsdasasdalkjacsklcja;lcjs;ljas;ljasc;ljcsa;lj;ljdas;ljdut");
 	ft_list_push_front(&l1, el);
+	ft_list_push_front(&l1, "zzello");
 	ft_lstprint(l1, "Modified");
 	printf("Ret is %p\n", l1);
 	printf("Data init ptr is %p and l1->data is %p (%s)\n", el, (char *)l1->data, l1->data);
 	printf("Next is %p\n", l1->next);
 	int size = ft_list_size(l1);
 	printf("SIZE IS %d\n", size);
+
+	// printf("List %p\nl1 %p\nl2 %p\nl3 %p\nSort FN %p\n", &l1, l1, l1->next, l1->next->next, sorter);
+	ft_lstprint(l1, "Before");	
+	ft_list_sort(&l1, sorter);
+	ft_lstprint(l1, "Sorted");
+	// printf("RET = %p", ret);
 }
