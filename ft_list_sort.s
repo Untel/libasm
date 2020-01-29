@@ -1,6 +1,5 @@
 section .text
 	global _ft_list_sort
-	extern _malloc
 
 _ft_list_sort:
 	mov rcx, [rdi]		; rcx = 1th elm

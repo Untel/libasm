@@ -7,7 +7,8 @@ SRCS			=	ft_strlen.s\
 					ft_atoi_base.s\
 					ft_list_push_front.s\
 					ft_list_size.s\
-					ft_list_sort.s
+					ft_list_sort.s\
+					ft_list_remove_if.s
 
 SRCC			= main.c
 NAME			= libasm.a
