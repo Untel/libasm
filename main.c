@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adda-sil <adda-sil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/30 16:05:02 by adda-sil          #+#    #+#             */
+/*   Updated: 2020/01/30 16:16:23 by adda-sil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -68,6 +80,7 @@ void
 {
 	char *ret = ft_strdup(str);
 	printf("\n%s (%p) = ft_strdup(%s) from %p\n", ret, ret, str, str);
+	free(ret);
 }
 
 int
@@ -91,4 +104,11 @@ int
 	test_read("ft_read.s", 10);
 	test_read("", 10);
 	test_strdup("dupped");
+
+	printf("\nTYPE SOMETHING:\n> ");
+	fflush(stdout);
+	char buff[301];
+	int ret = ft_read(0, buff, 300);
+	buff[ret] = 0;
+	printf("Ret == %s (%d)", buff, ret);
 }
