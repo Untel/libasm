@@ -125,9 +125,18 @@ int remover(void *data, void *ref)
 	return (!ret);
 }
 
+int remover2(void *data, void *ref)
+{
+	int ret;
+
+	ret = ft_strcmp(data, ref);
+	printf("REMOVER2 cmp(%s, %s)%d\n", (char *)data, (char *)ref, ret);
+	return (ret);
+}
+
 void freeer(void *data)
 {
-	printf("CALLING FREE %p (%s)\n", data, data);
+	// printf("CALLING FREE %p (%s)\n", data, data);
 	(void)data;
 }
 
@@ -161,8 +170,8 @@ int
 	t_list *l1 = malloc(sizeof(t_list *));
 	t_list *l2 = malloc(sizeof(t_list *));
 	t_list *l3 = malloc(sizeof(t_list *));
-	*l3 = (t_list) { .data = "f el 3", .next = NULL };
-	*l2 = (t_list) { .data = "z el 2", .next = l3 };
+	*l3 = (t_list) { .data = "Bonjour", .next = NULL };
+	*l2 = (t_list) { .data = "Bonjour4", .next = l3 };
 	printf("Init malloc ptr %p\n", &l1);
 	*l1 = (t_list) { .data = "el 1", .next = l2 };
 	ft_lstprint(l1, "Initialized");
@@ -181,10 +190,10 @@ int
 	ft_lstprint(l1, "Before");	
 	ft_list_sort(&l1, sorter);
 	ft_lstprint(l1, "Sorted");
-	char *refer = "zello";
-	printf("List %p\nl1 %p (%p)\nl2 %p (%p)\nl3 %p\nRefer str %p\nRemover FN %p\nFreer FN %p\n", &l1, l1, l1->data,
-		l1->next, l1->next->data, l1->next->next, refer, remover, freeer);
-	void *ret = (void *)ft_list_remove_if(&l1, refer, remover, freeer);
+	char *refer = "Bonjour";
+	// printf("List %p\nl1 %p (%p)\nl2 %p (%p)\nl3 %p\nRefer str %p\nRemover FN %p\nFreer FN %p\n", &l1, l1, l1->data,
+	// 	l1->next, l1->next->data, l1->next->next, refer, remover, freeer);
+	void *ret = (void *)ft_list_remove_if(&l1, refer, remover2, freeer);
 	// printf("Bef Next = %p\n", l1->next);
 	ft_lstprint(l1, "deleted");
 	printf("RET = %p\n", ret);
