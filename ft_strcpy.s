@@ -3,17 +3,16 @@ global _ft_strcpy
 section .text
 
 _ft_strcpy: ;rdi rsi
-	mov rdx, rdi
+	mov rax, rdi
 
 .loop:
-	cmp byte[rsi], 0
+	mov r15b, [rsi]
+	mov [rdi], r15b
+	cmp r15b, 0
 	je .end
-	mov al, [rsi]
-	mov [rdx], al
-	inc rdx
+	inc rdi
 	inc rsi
 	jmp .loop
 
 .end:
-	mov rax, rdi
 	ret
